@@ -64,7 +64,15 @@
     }, 1000);
   }
 
+  function backSlideshow() {
+    timeoutId = setTimeout(() => {
+      prev.click();
+      backSlideshow();
+    }, 1000);
+  }
+
   let isPlaying = false;
+  let isBack = false;
 
   const play = document.getElementById('play');
   play.addEventListener('click', () => {
@@ -76,5 +84,17 @@
       play.textContent = 'Play';
     }
     isPlaying = !isPlaying;
+  });
+
+  const back = document.getElementById('back');
+  back.addEventListener('click', () => {
+    if (isBack === false) {
+      backSlideshow();
+      back.textContent = 'Pause';
+    } else {
+      clearTimeout(timeoutId);
+      back.textContent = 'Back';
+    }
+    isBack = !isBack;
   });
 }
