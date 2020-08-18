@@ -56,19 +56,25 @@
   });
 
   let timeoutId;
+  let seconds = new Vue({
+    el: '#seconds',
+    data: {
+      sec: 1000
+    }
+  });
 
   function playSlideshow() {
     timeoutId = setTimeout(() => {
       next.click();
       playSlideshow();
-    }, 1000);
+    }, seconds.sec);
   }
 
   function backSlideshow() {
     timeoutId = setTimeout(() => {
       prev.click();
       backSlideshow();
-    }, 1000);
+    }, seconds.sec);
   }
 
   let isPlaying = false;
