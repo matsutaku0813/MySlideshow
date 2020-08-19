@@ -79,27 +79,58 @@
 
   let isPlaying = false;
   let isBack = false;
-
   const play = document.getElementById('play');
+  const back = document.getElementById('back');
+
+  function setButtonPlay() {
+    back.classList.toggle('inactive');
+  }
+  // function setButtonPlay() {
+  //   back.classList.add('inactive');
+  // }
+  // function setButtonPlayPauseBreak() {
+  //   back.classList.remove('inactive');
+  // }
+  function setButtonBack() {
+    play.classList.toggle('inactive');
+  }
+  // function setButtonBack() {
+  //   play.classList.add('inactive');
+  // }
+  // function setButtonBackPauseBreak() {
+  //   play.classList.remove('inactive');
+  // }
+
   play.addEventListener('click', () => {
+    if (play.classList.contains('inactive') === true) {
+      return;
+    }
     if (isPlaying === false) {
       playSlideshow();
       play.textContent = 'Pause';
+      setButtonPlay();
     } else {
       clearTimeout(timeoutId);
       play.textContent = 'Play';
+      setButtonPlay();
+      // setButtonPlayPauseBreak();
     }
     isPlaying = !isPlaying;
   });
 
-  const back = document.getElementById('back');
   back.addEventListener('click', () => {
+    if (back.classList.contains('inactive') === true) {
+      return;
+    }
     if (isBack === false) {
       backSlideshow();
       back.textContent = 'Pause';
+      setButtonBack();
     } else {
       clearTimeout(timeoutId);
       back.textContent = 'Back';
+      setButtonBack();
+      // setButtonBackPauseBreak();
     }
     isBack = !isBack;
   });
